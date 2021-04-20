@@ -70,8 +70,12 @@ textarea{
   color: white;
 }
 
-.saveBtn i:hover {
-  font-size: 20px;
+.align-save {
+  background-color: #06AED5;
+}
+
+.saveBtn:hover {
+  font-size: 40px;
   transition: all .3s ease-in-out;
 }
 
@@ -91,8 +95,12 @@ textarea{
   vertical-align: middle !important;
 }
 
+.align-hour,
+.align-task {
+  /* background: transparent; */
+}
+
 
 .table td {
   padding: 0;
-  background: transparent;
 }

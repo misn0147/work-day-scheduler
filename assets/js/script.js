@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    // var currentHour = moment().hour();
+    var currentHour = moment().hour();
 
-    //uncomment out line 5 and 6 to test if working after hours
-    var currentHour = moment().add(15, 'hours').hour(); 
-    console.log(currentHour);
+    //uncomment out line 5 and 6 to test if colors are working after hours
+    // var currentHour = moment().add(15, 'hours').hour(); 
+    // console.log(currentHour);
 
     // Displays the current date and time in the Jumbotron
     var update = function () {
@@ -32,7 +32,7 @@ $(document).ready(function () {
             `<td class="align-hour"><h3 class="time" id="${hours[i]}" data-hour="${schedulingHour}">${hours[i]}</h3></td>`
         );
         var task = $(
-            `<td class="align-task"><textarea class="task-form taskText" id="${schedulingHour}text" rows="3"></textarea></td>`
+            `<td class="align-task"><textarea class="task-form" id="${schedulingHour}text" rows="3"></textarea></td>`
         );
         var save = $(
             `<td class="align-save"><i class="far fa-save fa-2x saveBtn" data-hour="${schedulingHour}"></i></td>`
@@ -60,6 +60,24 @@ $(document).ready(function () {
         });
 
 
-        
+        var runColors = function() {
+            
+            var currentHour = moment().hour();
+            console.log(currentHour);
+            $(".align-task").each( function() {
+                
+                if ( schedulingHour < currentHour ) {
+                    $(this).removeClass(["present", "future"]).addClass("past");
+                }
+                else if ( schedulingHour === currentHour ) {
+                    $(this).removeClass(["past", "future"]).addClass("present");
+                }
+                else if ( schedulingHour > currentHour ){
+                    $(this).removeClass(["past", "present"]).addClass("future");
+                }
+            })
+        };
+        runColors();
+
 
     });
