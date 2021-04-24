@@ -1,8 +1,10 @@
+var taskColor = document.querySelector("align-task");
 $(document).ready(function () {
     var currentHour = moment().hour();
+    console.log(currentHour);
 
     //uncomment out line 5 and 6 to test if colors are working after hours
-    // var currentHour = moment().add(15, 'hours').hour(); 
+    // var currentHour = moment().add(3, 'hours').hour(); 
     // console.log(currentHour);
 
     // Displays the current date and time in the Jumbotron
@@ -24,6 +26,26 @@ $(document).ready(function () {
         '4:00 PM',
         '5:00 PM',
     ];
+
+    var runColors = function() {
+        for (var t = 0; t < hours.length; t++) {
+        var schedulingHour = [t + 9];
+        console.log(schedulingHour);
+        $(".align-task").each( function() {
+            
+            if ( schedulingHour < currentHour ) {
+                $(this).removeClass(["present", "future"]).addClass("past");
+            }
+            else if ( schedulingHour === currentHour ) {
+                $(this).removeClass(["past", "future"]).addClass("present");
+            }
+            else if ( schedulingHour > currentHour ){
+                $(this).removeClass(["past", "present"]).addClass("future");
+            }
+        })
+    };
+    }
+    
 
     for (var i = 0; i < hours.length; i++) {
         var schedulingHour = [i + 9];
@@ -60,24 +82,6 @@ $(document).ready(function () {
         });
 
 
-        var runColors = function() {
-            
-            var currentHour = moment().hour();
-            console.log(currentHour);
-            $(".align-task").each( function() {
-                
-                if ( schedulingHour < currentHour ) {
-                    $(this).removeClass(["present", "future"]).addClass("past");
-                }
-                else if ( schedulingHour === currentHour ) {
-                    $(this).removeClass(["past", "future"]).addClass("present");
-                }
-                else if ( schedulingHour > currentHour ){
-                    $(this).removeClass(["past", "present"]).addClass("future");
-                }
-            })
-        };
         runColors();
-
 
     });
