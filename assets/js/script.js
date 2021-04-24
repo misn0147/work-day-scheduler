@@ -3,7 +3,6 @@ $(document).ready(function () {
     var currentHour = moment().hour();
     console.log(currentHour);
 
-    //uncomment out line 5 and 6 to test if colors are working after hours
     // var currentHour = moment().add(3, 'hours').hour(); 
     // console.log(currentHour);
 
@@ -29,20 +28,20 @@ $(document).ready(function () {
 
     var runColors = function() {
         for (var t = 0; t < hours.length; t++) {
-        var schedulingHour = [t + 9];
+        var schedulingHour = t + 9;
+        var testId = "#" + schedulingHour.toString() + "color";
+        console.log(testId);
         console.log(schedulingHour);
-        $(".align-task").each( function() {
-            
             if ( schedulingHour < currentHour ) {
-                $(this).removeClass(["present", "future"]).addClass("past");
+                console.log("test");
+                $(testId).removeClass(["present", "future"]).addClass("past");
             }
             else if ( schedulingHour === currentHour ) {
-                $(this).removeClass(["past", "future"]).addClass("present");
+                $(testId).removeClass(["past", "future"]).addClass("present");
             }
             else if ( schedulingHour > currentHour ){
-                $(this).removeClass(["past", "present"]).addClass("future");
+                $(testId).removeClass(["past", "present"]).addClass("future");
             }
-        })
     };
     }
     
@@ -54,7 +53,7 @@ $(document).ready(function () {
             `<td class="align-hour"><h3 class="time" id="${hours[i]}" data-hour="${schedulingHour}">${hours[i]}</h3></td>`
         );
         var task = $(
-            `<td class="align-task"><textarea class="task-form" id="${schedulingHour}text" rows="3"></textarea></td>`
+            `<td id="${schedulingHour}color" class="align-task"><textarea class="task-form" id="${schedulingHour}text" rows="3"></textarea></td>`
         );
         var save = $(
             `<td class="align-save"><i class="far fa-save fa-2x saveBtn" data-hour="${schedulingHour}"></i></td>`
