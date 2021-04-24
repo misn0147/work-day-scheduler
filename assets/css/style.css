@@ -97,4 +97,7 @@ textarea{
   background-color: white;
 }
 
-
+th {
+  font-size: 25px;
+  font-weight: lighter;
+}
